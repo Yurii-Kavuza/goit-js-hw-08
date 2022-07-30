@@ -12,6 +12,8 @@ const refs = {
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onInput, 500));
 
+populateForm();
+
 function onFormSubmit(evt){
     evt.preventDefault();
     evt.currentTarget.reset();
@@ -19,9 +21,16 @@ function onFormSubmit(evt){
 }
 
 function onInput(evt){
-    formState.email=refs.email.value;
-    formState.message=refs.message.value;
+    formState[evt.target.name]=evt.target.value;
     localStorage.setItem(FORM_STATE_KEY,JSON.stringify(formState));
-    console.log(localStorage.getItem(FORM_STATE_KEY));
 }
 
+function populateForm(){
+    const savedData=localStorage.getItem(FORM_STATE_KEY);
+    
+    if(savedData){
+        const parsedData = JSON.parse(savedData);
+        refs.email.value=parsedData.email;
+        refs.message.value=parsedData.message;
+    }
+}
