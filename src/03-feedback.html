@@ -27,8 +27,17 @@
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <p><a href="index.html">Go back</a></p>
 
-    <!-- Add gallery items to this list -->
-    <ul class="gallery"></ul>
+    <form class="feedback-form" autocomplete="off">
+      <label>
+        Email
+        <input type="email" name="email" autofocus />
+      </label>
+      <label>
+        Message
+        <textarea name="message" rows="8"></textarea>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
 
     <!-- <include src="./partials/example.html"></include> -->
     <script type="module" src="./03-feedback.js"></script>
